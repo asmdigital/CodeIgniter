@@ -1122,6 +1122,24 @@ class CI_Form_validation {
 			? ($this->CI->db->limit(1)->get_where($table, array($field => $str))->num_rows() === 0)
 			: FALSE;
 	}
+	
+	/**
+	 * In Table
+	 *
+	 * Check if the input value does exist
+	 * in the specified database field.
+	 *
+	 * @param	string	$str
+	 * @param	string	$field
+	 * @return	bool
+	 */
+	public function in_table($str, $field)
+	{
+		sscanf($field, '%[^.].%[^.]', $table, $field);
+		return isset($this->CI->db)
+			? ($this->CI->db->limit(1)->get_where($table, array($field => $str))->num_rows() > 0)
+			: FALSE;
+	}
 
 	// --------------------------------------------------------------------
 
