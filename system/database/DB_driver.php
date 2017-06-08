@@ -1111,14 +1111,14 @@ abstract class CI_DB_driver {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Platform-dependant string escape
+	 * Platform-dependent string escape
 	 *
 	 * @param	string
 	 * @return	string
 	 */
 	protected function _escape_str($str)
 	{
-		return str_replace("'", "''", remove_invisible_characters($str));
+		return str_replace("'", "''", remove_invisible_characters($str, FALSE));
 	}
 
 	// --------------------------------------------------------------------

@@ -40,6 +40,20 @@ class Html_helper_test extends CI_TestCase {
 
 	// ------------------------------------------------------------------------
 
+	public function test_img()
+	{
+		$this->ci_set_config('base_url', 'http://localhost/');
+		$this->assertEquals('<img src="http://localhost/test" alt="" />', img("test"));
+		$this->assertEquals('<img src="data:foo/bar,baz" alt="" />', img("data:foo/bar,baz"));
+		$this->assertEquals('<img src="http://localhost/data://foo" alt="" />', img("data://foo"));
+		$this->assertEquals('<img src="//foo.bar/baz" alt="" />', img("//foo.bar/baz"));
+		$this->assertEquals('<img src="http://foo.bar/baz" alt="" />', img("http://foo.bar/baz"));
+		$this->assertEquals('<img src="https://foo.bar/baz" alt="" />', img("https://foo.bar/baz"));
+		$this->assertEquals('<img src="ftp://foo.bar/baz" alt="" />', img("ftp://foo.bar/baz"));
+	}
+
+	// ------------------------------------------------------------------------
+
 	public function test_Ul()
 	{
 		$expect = <<<EOH
@@ -81,24 +95,12 @@ EOH;
 
 	public function test_meta()
 	{
-		$this->assertEquals(
-			"<meta name=\"test\" content=\"foo\" />\n",
-			meta('test', 'foo')
-		);
+		$this->assertEquals("<meta name=\"test\" content=\"foo\" />\n", meta('test', 'foo'));
 
-		$this->assertEquals(
-			"<meta name=\"foo\" content=\"\" />\n",
-			meta(array('name' => 'foo'))
-		);
+		$expect = "<meta name=\"foo\" content=\"\" />\n";
 
-		$this->assertEquals(
-			"<meta charset=\"foo\" />\n",
-			meta(array('name' => 'foo', 'type' => 'charset'))
-		);
+		$this->assertEquals($expect, meta(array('name' => 'foo')));
 
-		$this->assertEquals(
-			"<meta charset=\"foo\" />\n",
-			meta(array('name' => 'foo', 'type' => 'charset'))
-		);
 	}
+
 }
