@@ -202,7 +202,7 @@ Class Reference
 		data::
 
 			$this->input->cookie('some_cookie');
-			$this->input->cookie('some_cookie, TRUE); // with XSS filter
+			$this->input->cookie('some_cookie', TRUE); // with XSS filter
 
 		To return an array of multiple cookie values, pass all the required keys
 		as an array.
@@ -370,7 +370,7 @@ Class Reference
 
 		Returns an array of HTTP request headers.
 		Useful if running in a non-Apache environment where
-		`apache_request_headers() <http://php.net/apache_request_headers>`_
+		`apache_request_headers() <https://secure.php.net/apache_request_headers>`_
 		will not be supported.
 		::
 
